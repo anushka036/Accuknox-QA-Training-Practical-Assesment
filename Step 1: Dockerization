@@ -1,4 +1,34 @@
-Clone the GitHub repository:
+//1. Clone the GitHub repository//
 
 git clone https://github.com/nyrahul/wisecow
 cd wisecow
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//2. Create a Dockerfile in the root directory//
+
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the application files
+COPY . /app
+
+# Install required dependencies
+RUN pip install -r requirements.txt
+
+# Expose the port on which the app runs
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python", "app.py"]
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//3. Build and tag the Docker image://
+
+docker build -t wisecow:latest .
