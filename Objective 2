@@ -1,0 +1,29 @@
+Objective 2: Log File Analyzer
+Python script:
+
+import re
+from collections import Counter
+
+log_file = "/path/to/logfile.log"
+
+# Analyze log file
+with open(log_file, "r") as file:
+    logs = file.readlines()
+
+# 404 errors
+errors_404 = [line for line in logs if "404" in line]
+print(f"Number of 404 errors: {len(errors_404)}")
+
+# Most requested pages
+pages = [re.search(r'"GET (.*?) HTTP', line).group(1) for line in logs if "GET" in line]
+most_requested = Counter(pages).most_common(5)
+print("Most requested pages:")
+for page, count in most_requested:
+    print(f"{page}: {count} requests")
+
+# IPs with most requests
+ips = [line.split()[0] for line in logs]
+most_active_ips = Counter(ips).most_common(5)
+print("Most active IPs:")
+for ip, count in most_active_ips:
+    print(f"{ip}: {count} requests")
