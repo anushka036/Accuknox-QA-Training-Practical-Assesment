@@ -1,6 +1,5 @@
 1. Use cert-manager in the Kubernetes cluster to manage TLS certificates.
-
-//Create an Ingress resource to han//dle HTTP traffic
+    -Create an Ingress resource to handle HTTP traffic:
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -24,3 +23,6 @@ spec:
   - hosts:
     - wisecow.example.com
     secretName: wisecow-tls
+
+
+2. Configure ingress with TLS support using cert-manager.
